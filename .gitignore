@@ -17,6 +17,7 @@ out
 nb-configuration.xml
 nbactions.xml
 .idea
+.theia
 *.ipr
 *.iws
 *.iml
