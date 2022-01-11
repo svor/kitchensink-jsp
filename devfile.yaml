@@ -48,7 +48,7 @@ commands:
   -
     name: 1. Build
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/kitchensink-jsp'
+      - workdir: '${CHE_PROJECTS_ROOT}/kitchensink-example'
         type: exec
         command: mvn ${MVN_ARGS_APPEND} clean install
         component: maven
@@ -70,15 +70,7 @@ commands:
         component: maven
         command: cp target/*.war /opt/eap/standalone/deployments/ROOT.war && 
           echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
-        workdir: ${CHE_PROJECTS_ROOT}/kitchensink-jsp
-  -
-    name: 4. Hot update
-    actions:
-      -
-        type: exec
-        component: maven
-        command: "mvn ${MVN_ARGS_APPEND} clean install && sleep 2 && cp target/*.war /opt/eap/standalone/deployments/ROOT.war"
-        workdir: ${CHE_PROJECTS_ROOT}/kitchensink-jsp
+        workdir: ${CHE_PROJECTS_ROOT}/kitchensink-example
   -
     name: Debug (Attach)
     actions:
