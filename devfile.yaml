@@ -4,13 +4,6 @@ metadata:
   name: java-eap-maven
 attributes:
   extensions.ignoreRecommendations: 'true'
-projects:
-  -
-    name: kitchensink-example
-    source:
-      type: git
-      branch: main
-      location: "https://github.com/svor/kitchensink-jsp.git"
 components:
   -
     type: chePlugin
