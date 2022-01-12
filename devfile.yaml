@@ -7,14 +7,17 @@ attributes:
 components:
   -
     type: chePlugin
-    id: redhat/java11/latest
+    id: redhat/java8/latest
   -  
     type: chePlugin
     id: github/vscode-pull-request-github/latest
   -
+    type: chePlugin
+    id: redhat/dependency-analytics/latest
+  -
     type: dockerimage
     alias: maven
-    image: registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8
+    image: registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7
     env:
       - name: MAVEN_OPTS
         value: "-Xmx200m -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/jboss"
@@ -42,7 +45,7 @@ commands:
     actions:
       - workdir: ${CHE_PROJECTS_ROOT}/kitchensink-jsp
         type: exec
-        command: mvn ${MVN_ARGS_APPEND} clean install
+        command: source ${JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE}/scl-enable-maven && mvn ${MVN_ARGS_APPEND} clean install
         component: maven
   - name: 2. Configure web server
     actions:
@@ -69,7 +72,7 @@ commands:
       -
         type: exec
         component: maven
-        command: "mvn ${MVN_ARGS_APPEND} clean install && sleep 2 && cp target/*.war /opt/eap/standalone/deployments/ROOT.war"
+        command: "source ${JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE}/scl-enable-maven && mvn ${MVN_ARGS_APPEND} clean install && sleep 2 && cp target/*.war /opt/eap/standalone/deployments/ROOT.war"
         workdir: ${CHE_PROJECTS_ROOT}/kitchensink-jsp
   -
     name: Debug (Attach)
