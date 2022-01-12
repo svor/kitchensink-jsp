@@ -8,10 +8,9 @@ components:
   -
     type: chePlugin
     id: redhat/java11/latest
-  -
-    # NOTE: instead of the old stack-analysis script, should be able to use the latest dependency-analysis plugin instead
+  -  
     type: chePlugin
-    id: redhat/dependency-analytics/latest
+    id: github/vscode-pull-request-github/latest
   -
     type: dockerimage
     alias: maven
