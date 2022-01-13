@@ -58,7 +58,7 @@
             <input id="register" type="submit" value="Register" /> 
         </p>
         <p>
-            <label style="color: green;width: 100%;text-align: left;">${infoMessage}</label> 
+            <label style="color: blue;width: 100%;text-align: left;">${infoMessage}</label> 
         </p>
         <p>
              <label style="color: red; width: 100%;text-align: left;">${errorMessage}</label>
